@@ -1,0 +1,246 @@
+/* raio Design System — componentes. Requer tokens.css
+   Fonte: component sets do Figma (node 58:66) — Button, Badge, Tag, Input,
+   Avatar, Card/Service, Navbar, Modal — cada um com Mode=Light/Dark via [data-theme].
+   Checkbox, Radio, Alert e Stat vêm do showcase (node 58:58). */
+
+.raio { font-family: var(--raio-font); color: var(--raio-text); background: var(--raio-bg); }
+.raio h1, .raio h2, .raio h3, .raio p { margin: 0; }
+
+/* ---------- Logo (versões em uma cor só, tingidas por `color`) ----------
+   Caminho relativo a este CSS; ajuste se mover a pasta logos/ */
+.raio-mark, .raio-logo-mono {
+  display: inline-block; background: currentColor; flex: none;
+  -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat;
+}
+.raio-mark { --src: url("logos/mark.svg"); aspect-ratio: 196 / 257; height: 32px; }
+.raio-logo-mono { --src: url("logos/logo-mono.svg"); aspect-ratio: 581 / 176; width: 120px; }
+
+/* ---------- Tipografia ---------- */
+.raio-display { font-size: var(--raio-fs-display); font-weight: var(--raio-fw-bold); }
+.raio-h1 { font-size: var(--raio-fs-h1); font-weight: var(--raio-fw-bold); }
+.raio-h2 { font-size: var(--raio-fs-h2); font-weight: var(--raio-fw-bold); }
+.raio-h3 { font-size: var(--raio-fs-h3); font-weight: var(--raio-fw-medium); }
+.raio-body-lg { font-size: var(--raio-fs-body-lg); }
+.raio-body { font-size: var(--raio-fs-body); }
+.raio-label { font-size: var(--raio-fs-label); font-weight: var(--raio-fw-medium); }
+.raio-overline {
+  font-size: var(--raio-fs-caption); font-weight: var(--raio-fw-bold);
+  letter-spacing: var(--raio-ls-overline); text-transform: uppercase; color: var(--raio-text-muted);
+}
+
+/* =========================================================
+   Button — Type: primary | accent | ghost | outline
+   Figma: h48, px24, radius 8, 14px bold, borda 2px em ghost/outline
+   ========================================================= */
+.raio-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 48px; padding: 0 24px; box-sizing: border-box; border: 0; border-radius: var(--raio-radius-md);
+  font: var(--raio-fw-bold) var(--raio-fs-body-sm) var(--raio-font); white-space: nowrap; cursor: pointer;
+  text-decoration: none; transition: filter .15s, transform .05s;
+}
+.raio-btn:hover { filter: brightness(1.06); }
+.raio-btn:active { transform: translateY(1px); }
+.raio-btn:focus-visible { outline: 2px solid var(--raio-focus); outline-offset: 2px; }
+.raio-btn:disabled { opacity: .4; cursor: not-allowed; filter: none; }
+
+.raio-btn--primary { background: var(--raio-blue); color: var(--raio-white); }
+.raio-btn--accent  { background: var(--raio-lime); color: var(--raio-black); }
+.raio-btn--ghost {
+  background: transparent; color: var(--raio-text);
+  box-shadow: inset 0 0 0 var(--raio-border-strong) var(--raio-border);
+}
+.raio-btn--outline {
+  background: transparent; color: var(--raio-focus);
+  box-shadow: inset 0 0 0 var(--raio-border-strong) var(--raio-focus);
+}
+[data-theme="dark"] .raio-btn--ghost,
+[data-theme="dark"] .raio-btn--outline { background: var(--raio-dark-surface); }
+
+/* CTA da marca: blue no light, lime no dark (Navbar, Card, Modal) */
+.raio-btn--cta { background: var(--raio-cta-bg); color: var(--raio-cta-fg); }
+
+/* Tamanhos */
+.raio-btn--lg { height: 52px; padding: 0 32px; }
+.raio-btn--sm { height: 36px; padding: 0 20px; font-size: var(--raio-fs-label); }
+/* No tamanho sm (Card), a borda do outline/ghost é 1.5px */
+.raio-btn--sm.raio-btn--outline { box-shadow: inset 0 0 0 var(--raio-border-base) var(--raio-focus); }
+.raio-btn--sm.raio-btn--ghost   { box-shadow: inset 0 0 0 var(--raio-border-base) var(--raio-border); }
+.raio-btn--block { width: 100%; }
+
+/* =========================================================
+   Badge — Color: blue | lime | purple | neutral
+   Figma: px12 py4, pill, 12px medium
+   ========================================================= */
+.raio-badge {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 28px; padding: 4px 12px; box-sizing: border-box; border-radius: var(--raio-radius-pill);
+  font: var(--raio-fw-medium) var(--raio-fs-label) var(--raio-font); white-space: nowrap;
+  background: var(--raio-blue); color: var(--raio-white); --x: rgba(255,255,255,.6);
+}
+.raio-badge--blue    { background: var(--raio-blue);   color: var(--raio-white); --x: rgba(255,255,255,.6); }
+.raio-badge--lime    { background: var(--raio-lime);   color: var(--raio-black); --x: rgba(0,0,0,.6); }
+.raio-badge--purple  { background: var(--raio-purple); color: var(--raio-black); --x: rgba(0,0,0,.6); }
+.raio-badge--neutral { background: var(--raio-neutral-200); color: var(--raio-neutral-800); --x: rgba(40,40,40,.6); }
+
+/* =========================================================
+   Tag — Badge com botão de remover "×"
+   Figma: pl12 pr10 py5, gap 6, "×" 11px bold 60%
+   ========================================================= */
+.raio-tag { padding: 5px 10px 5px 12px; }
+.raio-tag__remove {
+  all: unset; cursor: pointer; font: var(--raio-fw-bold) var(--raio-fs-caption) var(--raio-font);
+  color: var(--x); line-height: 1;
+}
+.raio-tag__remove:hover { color: inherit; }
+.raio-tag__remove:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
+
+/* Stat badge (showcase dark) */
+.raio-badge--stat {
+  height: 24px; padding: 0 8px; font-size: 10px;
+  background: color-mix(in srgb, var(--raio-success-strong) 18%, transparent); color: var(--raio-success-bright);
+}
+
+/* =========================================================
+   Input — State: default | focus | error | filled
+   Figma: 280×56, radius 8, borda 1.5px (2px em focus/error),
+   label 11px medium no topo, valor 14px regular
+   ========================================================= */
+.raio-input {
+  position: relative; display: flex; flex-direction: column; justify-content: center; gap: 4px;
+  width: 280px; max-width: 100%; min-height: 56px; padding: 6px 10.5px; box-sizing: border-box;
+  background: var(--raio-surface); border-radius: var(--raio-radius-md);
+  box-shadow: inset 0 0 0 var(--raio-border-base) var(--raio-border);
+}
+.raio-input__label { font: var(--raio-fw-medium) var(--raio-fs-caption) var(--raio-font); color: var(--raio-text-muted); }
+.raio-input input, .raio-input select, .raio-input textarea {
+  all: unset; width: 100%; font: var(--raio-fw-regular) var(--raio-fs-body-sm) var(--raio-font); color: var(--raio-text);
+}
+.raio-input input::placeholder, .raio-input textarea::placeholder { color: var(--raio-text-muted); }
+.raio-input textarea { min-height: 60px; }
+.raio-input__hint { font-size: var(--raio-fs-caption); color: var(--raio-text-muted); }
+
+.raio-input:focus-within, .raio-input--focus { box-shadow: inset 0 0 0 var(--raio-border-strong) var(--raio-focus); }
+.raio-input:focus-within .raio-input__label, .raio-input--focus .raio-input__label { color: var(--raio-focus); }
+.raio-input--error, .raio-input--error:focus-within { box-shadow: inset 0 0 0 var(--raio-border-strong) var(--raio-error-field); }
+.raio-input--error .raio-input__label, .raio-input--error .raio-input__hint { color: var(--raio-error-field); }
+
+.raio-input--select::after {
+  content: "▾"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  color: var(--raio-text-muted); pointer-events: none;
+}
+.raio-input--select select { appearance: none; padding-right: 24px; cursor: pointer; }
+
+/* =========================================================
+   Checkbox / Radio (showcase)
+   ========================================================= */
+.raio-check { display: inline-flex; align-items: center; gap: 8px; font: var(--raio-fs-sm) var(--raio-font); cursor: pointer; }
+.raio-check input {
+  appearance: none; width: 20px; height: 20px; margin: 0; display: grid; place-content: center;
+  border: var(--raio-border-base) solid var(--raio-neutral-400); border-radius: var(--raio-radius-xs);
+  background: var(--raio-surface); cursor: pointer;
+}
+.raio-check input:focus-visible { outline: 2px solid var(--raio-focus); outline-offset: 2px; }
+.raio-check input:checked { background: var(--raio-blue); border-color: var(--raio-blue); }
+.raio-check input[type="checkbox"]:checked::after { content: "✓"; color: #fff; font: 700 12px var(--raio-font); }
+.raio-check input[type="radio"] { border-radius: 50%; }
+.raio-check input[type="radio"]:checked { background: var(--raio-surface); border: 2px solid var(--raio-blue); }
+.raio-check input[type="radio"]:checked::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--raio-blue); }
+
+/* =========================================================
+   Alert (showcase)
+   ========================================================= */
+.raio-alert {
+  display: grid; grid-template-columns: 8px 1fr; column-gap: 8px; align-items: center;
+  padding: 13px 16px; border-radius: var(--raio-radius-lg); border: 1px solid; color: var(--raio-neutral-800);
+}
+.raio-alert::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--dot); grid-row: 1 / 3; }
+.raio-alert strong { font: var(--raio-fw-bold) var(--raio-fs-sm) var(--raio-font); }
+.raio-alert p { font-size: var(--raio-fs-caption); grid-column: 2; }
+.raio-alert--success { background: var(--raio-success-bg); border-color: var(--raio-success); --dot: var(--raio-success); }
+.raio-alert--warning { background: var(--raio-warning-bg); border-color: var(--raio-warning); --dot: var(--raio-warning); }
+.raio-alert--error   { background: var(--raio-error-bg);   border-color: var(--raio-error);   --dot: var(--raio-error); }
+
+/* =========================================================
+   Avatar — Size: lg 56 | md 44 | sm 32 | xs 24 ; Color: blue | lime | purple
+   Figma: texto bold 16 / 13 / 10 / 8; blue → branco, lime/purple → preto
+   ========================================================= */
+.raio-avatar {
+  --s: 56px; --f: 16px; width: var(--s); height: var(--s); border-radius: 50%; flex: none;
+  display: inline-grid; place-content: center; font: var(--raio-fw-bold) var(--f) var(--raio-font);
+  background: var(--raio-blue); color: var(--raio-white); overflow: hidden;
+}
+.raio-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.raio-avatar--md { --s: 44px; --f: 13px; }
+.raio-avatar--sm { --s: 32px; --f: 10px; }
+.raio-avatar--xs { --s: 24px; --f: 8px; }
+.raio-avatar--lime   { background: var(--raio-lime);   color: var(--raio-black); }
+.raio-avatar--purple { background: var(--raio-purple); color: var(--raio-black); }
+
+/* =========================================================
+   Card/Service
+   Figma: 280×190, radius 16, borda 1px, faixa lime 5px no topo,
+   ícone 40px em círculo lime 15%, divisor, CTA + outline 100×36
+   ========================================================= */
+.raio-card {
+  position: relative; overflow: hidden; box-sizing: border-box; width: 280px; max-width: 100%;
+  padding: 24px 19px 19px; border-radius: var(--raio-radius-2xl);
+  background: var(--raio-surface); border: 1px solid var(--raio-border); box-shadow: var(--raio-shadow-card);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.raio-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 5px; background: var(--raio-lime); }
+.raio-card__head { display: flex; align-items: center; gap: 12px; }
+.raio-card__icon {
+  width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-content: center;
+  background: rgba(206, 255, 5, .15); color: var(--raio-lime); font-size: 18px;
+}
+.raio-card__title { font: var(--raio-fw-bold) var(--raio-fs-body) var(--raio-font); color: var(--raio-text); }
+.raio-card__meta, .raio-card__text { font-size: var(--raio-fs-label); color: var(--raio-text-muted); }
+.raio-card__divider { height: 1px; background: var(--raio-border); border: 0; margin: 2px 0 6px; }
+.raio-card__actions { display: flex; gap: 20px; }
+.raio-card__actions .raio-btn { width: 100px; padding: 0; }
+
+/* =========================================================
+   Navbar
+   Figma: h64, borda 1px, links 14px medium a cada 110px, CTA 120×36
+   ========================================================= */
+.raio-nav {
+  display: flex; align-items: center; height: 64px; padding: 0 24px; box-sizing: border-box;
+  background: var(--raio-surface); border: 1px solid var(--raio-border); box-shadow: var(--raio-shadow-nav);
+}
+.raio-nav--rounded { border-radius: var(--raio-radius-xl); }
+.raio-nav__logo { font: var(--raio-fw-bold) 18px var(--raio-font); color: var(--raio-logo); text-decoration: none; width: 176px; flex: none; }
+.raio-nav__links { display: flex; flex: 1; }
+.raio-nav__links a {
+  width: 110px; font: var(--raio-fw-medium) var(--raio-fs-body-sm) var(--raio-font);
+  color: var(--raio-nav-link); text-decoration: none;
+}
+.raio-nav__links a:hover, .raio-nav__links a[aria-current="page"] { color: var(--raio-focus); }
+.raio-nav .raio-btn { width: 120px; height: 36px; padding: 0; font-size: var(--raio-fs-sm); }
+@media (max-width: 760px) { .raio-nav__links { display: none; } .raio-nav { justify-content: space-between; } }
+
+/* =========================================================
+   Modal
+   Figma: 380×440, radius 20, borda 1px, header 64 com divisor,
+   campos 44px (textarea 80), label 11px, CTA 44 radius 10
+   ========================================================= */
+.raio-modal {
+  width: 380px; max-width: 100%; box-sizing: border-box; overflow: hidden; border-radius: var(--raio-radius-3xl);
+  background: var(--raio-surface); border: 1px solid var(--raio-border); box-shadow: var(--raio-shadow-modal);
+}
+.raio-modal__head {
+  height: 64px; padding: 0 23px; display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--raio-border); font: var(--raio-fw-bold) 18px var(--raio-font); color: var(--raio-text);
+}
+.raio-modal__close { all: unset; cursor: pointer; color: var(--raio-text-muted); font-size: 16px; }
+.raio-modal__close:focus-visible { outline: 2px solid var(--raio-focus); outline-offset: 4px; border-radius: 2px; }
+.raio-modal__body { padding: 15px 23px 16px; display: flex; flex-direction: column; gap: 20px; }
+.raio-modal__field { display: flex; flex-direction: column; gap: 8px; font: var(--raio-fw-medium) var(--raio-fs-caption) var(--raio-font); color: var(--raio-text-muted); }
+.raio-modal__field input, .raio-modal__field select, .raio-modal__field textarea {
+  height: 44px; padding: 0 11px; box-sizing: border-box; border-radius: var(--raio-radius-md);
+  border: 1px solid var(--raio-modal-field-border); background: var(--raio-modal-field-bg);
+  font: var(--raio-fw-regular) var(--raio-fs-sm) var(--raio-font); color: var(--raio-text); outline: none;
+}
+.raio-modal__field textarea { height: 80px; padding: 11px; resize: vertical; }
+.raio-modal__field ::placeholder { color: var(--raio-text-muted); }
+.raio-modal__field :focus { border-color: var(--raio-focus); }
+.raio-modal .raio-btn { height: 44px; border-radius: var(--raio-radius-lg); margin-top: 12px; }

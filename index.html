@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raio – Hacka</title>
+  <style>
+    :root {
+      --cover-ratio: 1920 / 960;
+      --bg: #7fa6d6;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: var(--bg);
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+    }
+    /* Figma node 3:6 "cover" — 1920×960 frame with a single image fill */
+    .cover {
+      position: relative;
+      width: 100%;
+      max-width: 1920px;
+      aspect-ratio: var(--cover-ratio);
+      overflow: hidden;
+    }
+    .cover__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="cover" data-node-id="3:6">
+    <img
+      class="cover__img"
+      src="assets/cover.png"
+      width="1920"
+      height="960"
+      alt="Inflatable Elements — 24 elements for your project. (3D Abstract). Free pack."
+    />
+  </main>
+</body>
+</html>

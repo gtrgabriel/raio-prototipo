@@ -1,0 +1,111 @@
+/* raio Design System — tokens (extraído do Figma "Raio - Hacka", node 58:58) */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap");
+
+:root {
+  /* ---------- Primitivas ---------- */
+  --raio-blue: #0451ff;
+  --raio-lime: #ceff05;
+  --raio-purple: #d785fe;
+
+  --raio-black: #000000;
+  --raio-neutral-800: #282828;
+  --raio-neutral-500: #808080;
+  --raio-neutral-400: #a0a0a0;
+  --raio-neutral-350: #999999;
+  --raio-neutral-300: #d9d9d9;
+  --raio-neutral-200: #e6e6e6;
+  --raio-neutral-100: #f5f5f5;
+  --raio-white: #ffffff;
+
+  --raio-dark-bg: #080810;
+  --raio-dark-surface: #12121e;
+  --raio-dark-border: #28283c;
+
+  --raio-success: #33b233;
+  --raio-success-bg: #e5ffe5;
+  --raio-success-bright: #33e566;
+  --raio-success-strong: #1acc4d;
+  --raio-warning: #ffb200;
+  --raio-warning-bg: #fff7e0;
+  --raio-error: #ff4d4d;
+  --raio-error-input: #ff3333;
+  --raio-error-bg: #ffebeb;
+  --raio-error-field: #dc3232;   /* borda/label do componente Input (State=Error) */
+
+  /* ---------- Tipografia ---------- */
+  --raio-font: "Space Grotesk", system-ui, sans-serif;
+  --raio-fw-regular: 400;
+  --raio-fw-medium: 500;
+  --raio-fw-bold: 700;
+
+  --raio-fs-display: 64px;
+  --raio-fs-h1: 48px;
+  --raio-fs-h2: 36px;
+  --raio-fs-h3: 28px;
+  --raio-fs-section: 24px;
+  --raio-fs-body-lg: 18px;
+  --raio-fs-body: 16px;
+  --raio-fs-body-sm: 14px;
+  --raio-fs-sm: 13px;
+  --raio-fs-label: 12px;
+  --raio-fs-caption: 11px;
+  --raio-ls-overline: 1.5px;
+
+  /* ---------- Raio / borda / sombra ---------- */
+  --raio-radius-xs: 5px;
+  --raio-radius-sm: 6px;
+  --raio-radius-md: 8px;
+  --raio-radius-lg: 10px;
+  --raio-radius-xl: 12px;
+  --raio-radius-2xl: 16px;
+  --raio-radius-3xl: 20px;
+  --raio-radius-pill: 100px;
+
+  --raio-border-thin: 1px;
+  --raio-border-base: 1.5px;
+  --raio-border-strong: 2px;
+
+  /* Sombras dos componentes do Figma (variam por modo) */
+  --raio-shadow-nav: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --raio-shadow-card: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --raio-shadow-modal: 0 24px 30px rgba(0, 0, 0, 0.15);
+
+  /* ---------- Semânticos (light) ---------- */
+  --raio-bg: var(--raio-neutral-100);
+  --raio-surface: var(--raio-white);
+  --raio-border: var(--raio-neutral-200);
+  --raio-text: var(--raio-neutral-800);
+  --raio-text-muted: var(--raio-neutral-400);
+  --raio-text-secondary: var(--raio-neutral-500);
+  --raio-primary: var(--raio-blue);
+  --raio-on-primary: var(--raio-white);
+  --raio-accent: var(--raio-lime);
+  --raio-on-accent: var(--raio-black);
+  --raio-focus: var(--raio-blue);   /* borda de foco e outline */
+  --raio-logo: var(--raio-blue);
+  --raio-cta-bg: var(--raio-blue);
+  --raio-cta-fg: var(--raio-white);
+  --raio-nav-link: var(--raio-neutral-800);
+  --raio-modal-field-bg: var(--raio-neutral-200);
+  --raio-modal-field-border: var(--raio-neutral-200);
+}
+
+/* ---------- Semânticos (dark) ---------- */
+[data-theme="dark"] {
+  --raio-bg: var(--raio-dark-bg);
+  --raio-surface: var(--raio-dark-surface);
+  --raio-border: var(--raio-dark-border);
+  --raio-text: var(--raio-white);
+  --raio-text-muted: var(--raio-neutral-400);
+  --raio-text-secondary: var(--raio-neutral-400);
+  --raio-focus: var(--raio-lime);   /* no dark, foco/outline viram lime */
+  --raio-logo: var(--raio-lime);
+  --raio-cta-bg: var(--raio-lime);
+  --raio-cta-fg: var(--raio-black);
+  --raio-nav-link: var(--raio-neutral-400);
+  --raio-modal-field-bg: var(--raio-dark-bg);
+  --raio-modal-field-border: var(--raio-dark-border);
+  --raio-shadow-nav: none;
+  --raio-shadow-card: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --raio-shadow-modal: 0 24px 30px rgba(0, 0, 0, 0.5);
+}
